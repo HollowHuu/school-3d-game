@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://kqor3ro7da4l" path="res://models/Sword.glb" id="2_ykyjo"]
 [ext_resource type="Texture2D" uid="uid://cvgrrow77tl8v" path="res://sprites/healthbarbacunder.png" id="3_nmc1l"]
 [ext_resource type="Texture2D" uid="uid://trj84u768x0w" path="res://sprites/healthbarover.png" id="4_f46kd"]
+[ext_resource type="Script" uid="uid://djdkotxbllmfn" path="res://scripts/shop.gd" id="5_f46kd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bxedw"]
 radius = 0.4
@@ -72,20 +73,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-1.1035892, 0, 0), Vector3(0, 0, 0)]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"deal_damage"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f46kd"]
 _data = {
@@ -143,6 +130,43 @@ text = "0"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackZone" unique_id=1986275023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0066375732, 0, -1.1157608)
 shape = SubResource("BoxShape3D_nmc1l")
+
+[node name="Control" type="Control" parent="." unique_id=682521338]
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_f46kd")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=267348281]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15487596, 0.154876, 0.15487596, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1913006517]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 81.0
+offset_right = 993.0
+offset_bottom = 470.0
+
+[node name="GoldLabel" type="Label" parent="Control/VBoxContainer" unique_id=137716468]
+layout_mode = 2
+
+[node name="ItemContainer" type="VBoxContainer" parent="Control/VBoxContainer" unique_id=1816228777]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Control/VBoxContainer" unique_id=1237082036]
+layout_mode = 2
+text = "Close"
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]

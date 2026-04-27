@@ -395,12 +395,9 @@ tracks/21/path = NodePath("..")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(2, 2.4333334),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(2.4333334),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"give_loot"
-}, {
 "args": [],
 "method": &"queue_free"
 }]
@@ -718,7 +715,7 @@ tracks/21/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"_attack"
 }]
 }
 
@@ -892,10 +889,10 @@ radius = 3.609375
 height = 1.0131836
 radius = 0.5307617
 
-[node name="Enemy" type="CharacterBody3D" unique_id=462343125 node_paths=PackedStringArray("navAgent", "animPlayer")]
+[node name="Enemy" type="CharacterBody3D" unique_id=462343125 node_paths=PackedStringArray("nav_agent", "anim_player")]
 script = ExtResource("1_we7g8")
-navAgent = NodePath("NavigationAgent3D")
-animPlayer = NodePath("GobelinExport/AnimationPlayer")
+nav_agent = NodePath("NavigationAgent3D")
+anim_player = NodePath("GobelinExport/AnimationPlayer")
 
 [node name="GobelinExport" type="Node3D" parent="." unique_id=694573985]
 
@@ -1127,5 +1124,5 @@ shape = SubResource("CylinderShape3D_3hb37")
 
 [connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
 [connection signal="body_shape_exited" from="ChaseArea" to="." method="_on_chase_area_body_shape_exited"]
-[connection signal="body_shape_entered" from="AttackArea" to="." method="_on_attack_area_body_shape_entered"]
-[connection signal="body_shape_exited" from="AttackArea" to="." method="_on_attack_area_body_shape_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
